@@ -48,33 +48,61 @@ npm run preview  # serve the build
 npm test         # from the testing lesson onward
 ```
 
-## Repo layout & how to add a lesson
+## Repo layout
 
 ```
 src/
-  App.tsx              # tab registry: { id, label, Component }[]
-  lessons/
-    NN-name/
-      index.tsx        # exports the single component shown in the tab
-      notes.md         # what it is, Python/Java/C# analogy, gotchas
+  App.tsx              # demo registry (see below) — keep this file short
+  demos/               # one file per concept: <Concept>.tsx
+  components/          # shared presentational components
+  hooks/               # one custom hook per file
+  context/             # one provider + its consumer hook, per file
+  lib/                 # small pure helpers (no React)
 ```
 
-Adding a lesson means exactly two things: create `src/lessons/NN-name/`, then append one entry to the registry in `src/App.tsx`. Nothing else is touched, and lessons already in place must keep working.
+## Demo registry (App.tsx)
 
-The active tab lives in `useState` until the React Router lesson (step 19 of the concept path) replaces it.
+`App.tsx` owns a typed registry and nothing else:
+
+```ts
+type Demo = { id: string; step: number; title: string; element: ReactNode };
+
+const demos: Demo[] = [
+  // { id: 'counter', step: 2, title: 'useState (Counter)', element: <Counter /> },
+];
+```
+
+Active demo selection:
+
+```ts
+const [activeId, setActiveId] = useState(demos[0]?.id ?? "");
+const active = demos.find((d) => d.id === activeId) ?? demos[0];
+```
+
+The shell renders `Pas {active.step} — {active.title}`; the demo renders only its own content.
+
+**Adding a demo = one new file in `src/demos/` + one new entry in the `demos` array. Nothing else is touched.**
 
 ## Code conventions
 
 - Function components only.
 - Type props with a local `Props` type in the same file.
 - No `any`. No non-null assertions (`!`) to silence the type checker.
-- One default export per lesson file: the lesson component. Everything else is a named export.
-- Comment only where a JS/React idiom would surprise a Java/C#/Python developer — not to restate what the code does.
+- One default export per demo file: the demo component. Everything else is a named export.
+- Every `src/demos/<Concept>.tsx` starts with a header block:
 
-## Definition of done for a lesson
+```ts
+// Pas N — <Concept>.
+// DE CE există acest pas: <explicație în română — motivul, nu descrierea codului>.
+```
 
-- The tab runs in the app.
-- `notes.md` exists next to the lesson.
+- All other comments explain WHY a piece of code exists, not what it does. Write them in Romanian.
+- Commit message format: `pas N — concept (ComponentName)` (e.g. `pas 2 — useState (Counter)`).
+
+## Definition of done for a demo
+
+- The demo appears in the `demos` array and renders correctly in the app.
+- The file has the required `// Pas N —` header comment.
 - `npm run build` passes.
 - The user can explain the concept in their own words without looking at the code.
 
