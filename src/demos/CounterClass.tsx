@@ -47,16 +47,18 @@ export class CounterClass extends Component<{}, CounterClassState> {
   render() {
     return (
       <div>
-        <p style={{ fontSize: "5rem", margin: "0.5rem 0" }}>{this.state.count}</p>
-        <Button variant="outline" size="sm" onClick={() => this.increment()}>
-          +1
-        </Button>
-        <Button variant="outline" size="sm" onClick={this.decrement}>
-          -1
-        </Button>
-        <Button variant="secondary" size="sm" onClick={this.reset}>
-          Reset
-        </Button>
+        <p style={{ fontSize: "5rem", margin: "0.5rem 0", lineHeight: 1 }}>{this.state.count}</p>
+        <div style={{ display: "flex", gap: "0.5rem", justifyContent: "center" }}>
+          <Button variant="outline" size="sm" onClick={() => this.increment()}>
+            +1
+          </Button>
+          <Button variant="outline" size="sm" onClick={this.decrement}>
+            -1
+          </Button>
+          <Button variant="secondary" size="sm" onClick={this.reset}>
+            Reset
+          </Button>
+        </div>
       </div>
     );
   }

@@ -92,19 +92,24 @@ export function Timer() {
 
   return (
     <div>
-      <p style={{ fontSize: "5rem", margin: "0.5rem 0" }}>{seconds}s</p>
-      <Button onClick={() => setRunning(r => !r)}>{running ? "Pauzeă" : "Pornește"}</Button>
-      {/* Reset: opreste intervalul (setRunning false declanseaza cleanup-ul
+      <p style={{ fontSize: "5rem", margin: "0.5rem 0", lineHeight: 1 }}>
+        {seconds}
+        <span style={{ fontSize: "1.5rem", marginLeft: "0.25rem", opacity: 0.6 }}>s</span>
+      </p>
+      <div style={{ display: "flex", gap: "0.5rem", justifyContent: "center" }}>
+        <Button onClick={() => setRunning(r => !r)}>{running ? "Pauze" : "Pornește"}</Button>
+        {/* Reset: opreste intervalul (setRunning false declanseaza cleanup-ul
           efectului 1) si reinitializeaza secundele. */}
-      <Button
-        variant="outline"
-        onClick={() => {
-          setRunning(false);
-          setSeconds(0);
-        }}
-      >
-        Reset
-      </Button>
+        <Button
+          variant="outline"
+          onClick={() => {
+            setRunning(false);
+            setSeconds(0);
+          }}
+        >
+          Reset
+        </Button>
+      </div>
     </div>
   );
 }

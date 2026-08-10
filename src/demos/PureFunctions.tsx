@@ -21,6 +21,7 @@
 //   props sau state — altfel React nu are cum să știe când să re-randeze.
 
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 // ─── Constante de modul ───────────────────────────────────────────────────────
 // Primitive imutabile: `const` + număr = legătura NU poate fi reasignată și
@@ -69,16 +70,24 @@ export function PureFunctions() {
     <div style={{ fontFamily: "monospace", lineHeight: 2 }}>
       {/* ── Suma în RON ── */}
       <div>
-        <button onClick={() => addRon(-10)}>−10</button>
+        <Button variant="outline" size="sm" onClick={() => addRon(-10)}>
+          −10
+        </Button>
         <span style={{ margin: "0 1rem" }}>{ron} RON</span>
-        <button onClick={() => addRon(10)}>+10</button>
+        <Button variant="outline" size="sm" onClick={() => addRon(10)}>
+          +10
+        </Button>
       </div>
 
       {/* ── Cursul zilei ── */}
       <div>
-        <button onClick={() => addRate(-RATE_STEP)}>−</button>
+        <Button variant="outline" size="sm" onClick={() => addRate(-RATE_STEP)}>
+          −
+        </Button>
         <span style={{ margin: "0 1rem" }}>1 EUR = {rate.toFixed(2)} RON</span>
-        <button onClick={() => addRate(RATE_STEP)}>+</button>
+        <Button variant="outline" size="sm" onClick={() => addRate(RATE_STEP)}>
+          +
+        </Button>
       </div>
 
       {/* ── Checkbox NEcontrolat ─────────────────────────────────────────────
@@ -115,8 +124,7 @@ export function PureFunctions() {
       </table>
 
       <p style={{ marginTop: "1rem", color: "#666", fontSize: "0.9rem" }}>
-        Pas de reproductibil: bifează „aplică comision" → <em>nimic nu se schimbă</em>. Apoi apasă +10 → impureConvert aplică comisionul abia acum. pureConvert
-        nu are de unde să știe de checkbox — deci nici nu îl aplică.
+        Pas de reproductibil: bifează „aplică comision" → <em>nimic nu se schimbă</em>. Apoi apasă +10 → impureConvert aplică comisionul abia acum. pureConvert nu are de unde să știe de checkbox — deci nici nu îl aplică.
       </p>
     </div>
   );

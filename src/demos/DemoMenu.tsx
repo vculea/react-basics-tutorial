@@ -4,6 +4,7 @@
 // tot ce se vede — titlu, continut, buton activ — fara state suplimentar.
 
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 type MiniDemo = { id: string; step: number; label: string; content: string };
 
@@ -29,9 +30,9 @@ export function DemoMenu() {
 
         <nav style={{ display: "flex", gap: "0.5rem", marginBottom: "1rem" }}>
           {miniDemos.map(d => (
-            <button key={d.id} onClick={() => setActiveId(d.id)} style={{ fontWeight: active.id === d.id ? "bold" : "normal" }}>
+            <Button key={d.id} variant={active.id === d.id ? "default" : "secondary"} size="sm" onClick={() => setActiveId(d.id)}>
               {d.label}
-            </button>
+            </Button>
           ))}
         </nav>
 

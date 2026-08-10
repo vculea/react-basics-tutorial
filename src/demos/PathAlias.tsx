@@ -5,6 +5,7 @@
 // e fragil si greu de citit.
 
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 // Acelasi import, imaginat din src/components/chat/message/Bubble.tsx (4 niveluri adanc).
 // Constantele sunt siruri de text — ilustratie, nu import-uri reale.
@@ -45,12 +46,12 @@ export function PathAlias() {
           Același import, scris în două feluri. Fișierul sursă imaginat: <code>src/components/chat/message/Bubble.tsx</code>
         </p>
         <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1rem" }}>
-          <button onClick={() => setVariant("relative")} style={{ fontWeight: variant === "relative" ? "bold" : "normal" }}>
+          <Button variant={variant === "relative" ? "default" : "secondary"} size="sm" onClick={() => setVariant("relative")}>
             Fără alias (relativ)
-          </button>
-          <button onClick={() => setVariant("alias")} style={{ fontWeight: variant === "alias" ? "bold" : "normal" }}>
+          </Button>
+          <Button variant={variant === "alias" ? "default" : "secondary"} size="sm" onClick={() => setVariant("alias")}>
             Cu alias @/
-          </button>
+          </Button>
         </div>
         <div style={codeBlockStyle}>{examples.join("\n")}</div>
       </section>

@@ -24,40 +24,39 @@ export function Counter() {
     <div>
       {/* count vine direct din starea React — orice apel setCount declanseaza
           o re-rulare a functiei Counter si React actualizeaza DOM-ul. */}
-      <p style={{ fontSize: "5rem", margin: "0.5rem 0" }}>{count}</p>
+      <p style={{ fontSize: "5rem", margin: "0.5rem 0", lineHeight: 1 }}>{count}</p>
 
-      {/* Forma cu functie (c => c + 1) e sigura cand mai multe update-uri
-          se cumuleaza rapid: React garanteaza ca 'c' este intotdeauna valoarea
-          cea mai recenta, nu o copie veche capturata intr-un closure anterior. */}
-      <Button variant="outline" size="sm" onClick={() => setCount(c => c + 1)}>
-        +1
-      </Button>
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={() =>
-          setCount(c => {
-            return c - 1;
-          })
-        }
-      >
-        -1
-      </Button>
+      <div style={{ display: "flex", gap: "0.5rem", justifyContent: "center", flexWrap: "wrap" }}>
+        <Button variant="outline" size="sm" onClick={() => setCount(c => c + 1)}>
+          +1
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() =>
+            setCount(c => {
+              return c - 1;
+            })
+          }
+        >
+          -1
+        </Button>
 
-      {/* Reset nu depinde de valoarea anterioara, deci forma simpla e corecta. */}
-      <Button variant="secondary" size="sm" onClick={() => setCount(0)}>
-        Reset
-      </Button>
-      <Button
-        variant="ghost"
-        size="sm"
-        type="button"
-        onClick={() => {
-          clickCount++;
-        }}
-      >
-        count++ ({clickCount})
-      </Button>
+        {/* Reset nu depinde de valoarea anterioara, deci forma simpla e corecta. */}
+        <Button variant="secondary" size="sm" onClick={() => setCount(0)}>
+          Reset
+        </Button>
+        <Button
+          variant="ghost"
+          size="sm"
+          type="button"
+          onClick={() => {
+            clickCount++;
+          }}
+        >
+          count++ ({clickCount})
+        </Button>
+      </div>
     </div>
   );
 }

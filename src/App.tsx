@@ -10,6 +10,7 @@ import { DemoMenu } from "@/demos/DemoMenu";
 import { PathAlias } from "@/demos/PathAlias";
 import { TailwindSetup } from "@/demos/TailwindSetup";
 import { ShadcnSetup } from "@/demos/ShadcnSetup";
+import { CustomHooks } from "@/demos/CustomHooks";
 import { DemoTab } from "@/components/DemoTab";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
@@ -28,7 +29,8 @@ const demos: Demo[] = [
   { id: "demo-menu", step: 7, title: "meniu de navigare", element: <DemoMenu /> },
   { id: "path-alias", step: 8, title: "path alias (@/)", element: <PathAlias /> },
   { id: "tailwind-setup", step: 9, title: "Tailwind CSS (utility-first)", element: <TailwindSetup /> },
-  { id: "shadcn-setup", step: 10, title: "shadcn/ui (componente gata)", element: <ShadcnSetup /> }
+  { id: "shadcn-setup", step: 10, title: "shadcn/ui (componente gata)", element: <ShadcnSetup /> },
+  { id: "custom-hooks", step: 11, title: "custom hooks (useCounter, useWindowSize)", element: <CustomHooks /> }
 ];
 
 function App() {

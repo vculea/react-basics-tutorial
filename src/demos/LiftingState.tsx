@@ -27,7 +27,7 @@ function PriceCard({ label, amount, currency, step = 1, onChange }: PriceCardPro
     <div style={{ border: "1px solid #ccc", borderRadius: 8, padding: "1rem", minWidth: 160 }}>
       <div style={{ fontWeight: "bold", marginBottom: 8 }}>{label}</div>
       <div style={{ fontSize: "1.5rem", marginBottom: 8 }}>
-        {amount} {currency}
+        {amount} <span style={{ fontSize: "0.85rem", opacity: 0.6 }}>{currency}</span>
       </div>
       {/* Butoanele NU modifică o stare locală — apelează `onChange`,
           iar părintele decide cum se propagă schimbarea. */}
