@@ -75,15 +75,20 @@ function CardTailwind() {
 
 // ── Demo principal ───────────────────────────────────────────────────────────
 export function TailwindSetup() {
-  const [dark, setDark] = useState(false);
+  // Preia tema curentă la montare — altfel suprascrie starea globală din ThemeToggle.
+  const [dark, setDark] = useState(() => document.documentElement.classList.contains("dark"));
 
-  // Adăugăm / scoatem clasa .dark de pe <html> — acolo "vede" Tailwind tema.
-  // Cleanup: când pleci din demo, resetăm ca celelalte demo-uri să nu fie afectate.
+  // La demontare, restaurează tema care era activă înainte să intri în demo.
+  useEffect(() => {
+    const original = document.documentElement.classList.contains("dark");
+    return () => {
+      document.documentElement.classList.toggle("dark", original);
+    };
+  }, []);
+
+  // Sincronizează .dark cu starea locală la fiecare toggle din demo.
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
-    return () => {
-      document.documentElement.classList.remove("dark");
-    };
   }, [dark]);
 
   return (

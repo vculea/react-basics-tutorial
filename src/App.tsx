@@ -47,7 +47,7 @@ function App() {
         ))}
         <ThemeToggle />
       </nav>
-      <h1>
+      <h1 style={{ fontSize: "clamp(1.25rem, 3vw, 2rem)", lineHeight: 1.3 }}>
         Pas {active.step} — {active.title}
       </h1>
       {active.element}
