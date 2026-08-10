@@ -6,9 +6,12 @@ import { PureFunctions } from "./demos/PureFunctions";
 import { PrettierFormat } from "./demos/PrettierFormat";
 import { Timer } from "./demos/Timer";
 import { LiftingState } from "./demos/LiftingState";
+import { DemoMenu } from "./demos/DemoMenu";
+import { DemoTab } from "./components/DemoTab";
 
-// Registrul de demo-uri: adaugarea unui pas nou = un fisier nou in demos/ + o
-// intrare noua aici. Nimic altceva nu se schimba in acest fisier.
+// Sursa unica de adevar: activeId. Titlul, continutul si butonul selectat
+// se DERIVEAZA din el — nu tinem in state si lista si elementul activ separat.
+// Adaugarea unui pas nou = un fisier nou in demos/ + o intrare noua mai jos.
 type Demo = { id: string; step: number; title: string; element: ReactNode };
 
 const demos: Demo[] = [
@@ -17,23 +20,23 @@ const demos: Demo[] = [
   { id: "pure-functions", step: 3, title: "funcții pure vs. impure", element: <PureFunctions /> },
   { id: "prettier-format", step: 4, title: "Prettier (formatare automată)", element: <PrettierFormat /> },
   { id: "timer", step: 5, title: "useEffect (cronometru)", element: <Timer /> },
-  { id: "lifting-state", step: 6, title: "Lifting State (stare ridicată)", element: <LiftingState /> }
+  { id: "lifting-state", step: 6, title: "Lifting State", element: <LiftingState /> },
+  { id: "demo-menu", step: 7, title: "meniu de navigare", element: <DemoMenu /> }
 ];
 
 function App() {
+  // useState: selectia traieste in memoria React — se pierde la refresh.
   const [activeId, setActiveId] = useState(demos[0].id);
   const active = demos.find(d => d.id === activeId) ?? demos[0];
 
   return (
     <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
-      {/* Selector temporar — va fi inlocuit cu meniu la pasul 19 (React Router). */}
-      <select value={activeId} onChange={e => setActiveId(e.target.value)}>
+      {/* paddingTop lasa spatiu pentru badge-urile care depasesc chenarul butonului */}
+      <nav style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", paddingTop: "1rem", marginBottom: "1.5rem" }}>
         {demos.map(d => (
-          <option key={d.id} value={d.id}>
-            Pas {d.step} — {d.title}
-          </option>
+          <DemoTab key={d.id} step={d.step} title={d.title} active={d.id === activeId} onClick={() => setActiveId(d.id)} />
         ))}
-      </select>
+      </nav>
       <h1>
         Pas {active.step} — {active.title}
       </h1>

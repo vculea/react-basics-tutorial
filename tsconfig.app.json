@@ -16,6 +16,11 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+    /* Path alias — @/ → src/. Fara baseUrl + paths, TypeScript nu stie sa
+       rezolve @/ si IDE-ul raporteaza erori. Vite are configuratia sa separata. */
+    "baseUrl": ".",
+    "paths": { "@/*": ["./src/*"] },
+
     /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
