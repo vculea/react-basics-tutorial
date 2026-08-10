@@ -6,6 +6,7 @@
 // valoarea prin props și cer schimbarea prin callback — ei nu dețin nimic.
 
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 // Props explicite: ce primește și ce poate cere un PriceCard.
 // `onChange` este echivalentul unui event listener din Java/C# —
@@ -30,10 +31,12 @@ function PriceCard({ label, amount, currency, step = 1, onChange }: PriceCardPro
       </div>
       {/* Butoanele NU modifică o stare locală — apelează `onChange`,
           iar părintele decide cum se propagă schimbarea. */}
-      <button onClick={() => onChange(amount - step)}>−</button>
-      <button onClick={() => onChange(amount + step)} style={{ marginLeft: 8 }}>
+      <Button variant="outline" size="sm" onClick={() => onChange(amount - step)}>
+        −
+      </Button>
+      <Button variant="outline" size="sm" className="ml-2" onClick={() => onChange(amount + step)}>
         +
-      </button>
+      </Button>
     </div>
   );
 }

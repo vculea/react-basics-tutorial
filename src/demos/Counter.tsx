@@ -6,6 +6,7 @@
 // primesti valoarea noua, nu cea scrisa inainte de apelul setter-ului.
 
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
 // Variabila de modul — supravietuieste re-render-urilor, dar modificarea ei
 // nu spune nimic lui React, deci UI-ul nu se actualizeaza.
@@ -28,28 +29,35 @@ export function Counter() {
       {/* Forma cu functie (c => c + 1) e sigura cand mai multe update-uri
           se cumuleaza rapid: React garanteaza ca 'c' este intotdeauna valoarea
           cea mai recenta, nu o copie veche capturata intr-un closure anterior. */}
-      <button onClick={() => setCount(c => c + 1)}>+1</button>
-      <button
+      <Button variant="outline" size="sm" onClick={() => setCount(c => c + 1)}>
+        +1
+      </Button>
+      <Button
+        variant="outline"
+        size="sm"
         onClick={() =>
           setCount(c => {
             return c - 1;
           })
         }
       >
-        {" "}
         -1
-      </button>
+      </Button>
 
       {/* Reset nu depinde de valoarea anterioara, deci forma simpla e corecta. */}
-      <button onClick={() => setCount(0)}>Reset</button>
-      <button
+      <Button variant="secondary" size="sm" onClick={() => setCount(0)}>
+        Reset
+      </Button>
+      <Button
+        variant="ghost"
+        size="sm"
         type="button"
         onClick={() => {
           clickCount++;
         }}
       >
         count++ ({clickCount})
-      </button>
+      </Button>
     </div>
   );
 }

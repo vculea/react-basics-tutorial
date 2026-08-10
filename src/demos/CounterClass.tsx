@@ -19,6 +19,7 @@
 //     funcționalități React sunt proiectate NUMAI pentru componente-funcție
 
 import { Component } from "react";
+import { Button } from "@/components/ui/button";
 
 // Tipul stării — echivalent cu câmpurile unui obiect Java/C#.
 // Nu există props la acest demo, deci primul parametru generic este {}.
@@ -47,9 +48,15 @@ export class CounterClass extends Component<{}, CounterClassState> {
     return (
       <div>
         <p style={{ fontSize: "5rem", margin: "0.5rem 0" }}>{this.state.count}</p>
-        <button onClick={() => this.increment()}>+1</button>
-        <button onClick={this.decrement}>-1</button>
-        <button onClick={this.reset}>Reset</button>
+        <Button variant="outline" size="sm" onClick={() => this.increment()}>
+          +1
+        </Button>
+        <Button variant="outline" size="sm" onClick={this.decrement}>
+          -1
+        </Button>
+        <Button variant="secondary" size="sm" onClick={this.reset}>
+          Reset
+        </Button>
       </div>
     );
   }

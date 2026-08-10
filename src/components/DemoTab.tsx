@@ -1,5 +1,14 @@
-// Butonul de navigare cu badge: titlul conceptului ramane lizibil,
-// numarul pasului sta in coltul dreapta-sus fara sa inghesuiasca textul.
+// Butonul de navigare cu badge: titlul conceptului rămâne lizibil,
+// numărul pasului stă în colțul dreapta-sus fără să înghesuiască textul.
+//
+// variant={active ? "default" : "secondary"} → pasul activ se distinge prin
+// culoare fără clase scrise de mână; shadcn gestionează și starea hover/focus.
+// className="relative overflow-visible" → overflow-visible lasă badge-ul să
+// depășească chenarul fără să fie decupat (overflow-hidden din button.tsx
+// ar tăia span-ul absolut).
+
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 type Props = {
   step: number;
@@ -10,42 +19,11 @@ type Props = {
 
 export function DemoTab({ step, title, active, onClick }: Props) {
   return (
-    // position: relative + overflow implicit visible => badge-ul poate depasi
-    // chenarul butonului fara sa fie decupat.
-    <button
-      onClick={onClick}
-      style={{
-        position: "relative",
-        padding: "0.4rem 1rem",
-        fontWeight: active ? "bold" : "normal",
-        cursor: "pointer",
-        background: active ? "#646cff" : "",
-        color: active ? "#fff" : "",
-        borderColor: active ? "#646cff" : "",
-        borderRadius: "4px"
-      }}
-    >
+    <Button variant={active ? "default" : "secondary"} size="sm" onClick={onClick} className="relative overflow-visible">
       {title}
-      <span
-        style={{
-          position: "absolute",
-          top: "-0.55rem",
-          right: "-0.55rem",
-          fontSize: "0.65rem",
-          background: "#646cff",
-          color: "#fff",
-          borderRadius: "50%",
-          width: "1.25rem",
-          height: "1.25rem",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          lineHeight: 1,
-          pointerEvents: "none"
-        }}
-      >
-        {step}
-      </span>
-    </button>
+      {/* cn() compune clasele fără conflicte: varianta activă inversează
+          culorile badge-ului față de varianta inactivă. */}
+      <span className={cn("pointer-events-none absolute -top-2 -right-2 flex size-5 items-center justify-center rounded-full text-[0.6rem] font-bold", active ? "bg-primary-foreground text-primary" : "bg-primary text-primary-foreground")}>{step}</span>
+    </Button>
   );
 }

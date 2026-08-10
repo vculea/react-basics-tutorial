@@ -1,42 +1,83 @@
 @import "tailwindcss";
+/* Toate utilitarele dark: răspund la clasa .dark pe <html>, nu la media query.
+   AŞfa ThemeToggle controlează TOTUL dintr-un singur loc. */
+@variant dark (&:where(.dark, .dark *));
 
-/* ── Tokeni de temă Tailwind (OKLCH) ────────────────────────────────────────
-   De ce OKLCH? Spațiu perceptual uniform — pasul între două culori adiacente
-   e același peste tot pe scalară, spre deosebire de sRGB sau HSL.
-   Valorile brute stau în :root / .dark; @theme inline le expune ca utilitare.
-   Comutarea temei = o singură clasă pe <html>, nu umblat prin fiecare componentă.
+/* ── Tokeni shadcn/ui — neutral / Tailwind v4 ────────────────────────────────
+   :root și .dark definesc valorile brute; @theme inline le expune ca utilitare
+   Tailwind (bg-primary, text-muted-foreground etc.).
+   Comutarea temei = o singură clasă .dark pe <html>, zero modificări în componente.
    ─────────────────────────────────────────────────────────────────────────── */
-
 :root {
-  --tw-card: oklch(0.98 0 0);
-  --tw-card-fg: oklch(0.15 0 0);
-  --tw-primary: oklch(0.55 0.22 265);
-  --tw-primary-fg: oklch(0.98 0 0);
-  --tw-muted-fg: oklch(0.55 0.02 240);
-  --tw-border: oklch(0.9 0 0);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --radius: 0.625rem;
 }
 
 /* Clasa .dark pe <html> comută toate utilitarele dintr-o dată. */
 .dark {
-  --tw-card: oklch(0.18 0.01 240);
-  --tw-card-fg: oklch(0.92 0 0);
-  --tw-primary: oklch(0.72 0.18 265);
-  --tw-primary-fg: oklch(0.15 0 0);
-  --tw-muted-fg: oklch(0.65 0.01 240);
-  --tw-border: oklch(0.28 0.01 240);
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
 }
 
-/* @theme inline: Tailwind generează utilitare care referențiază direct
-   variabila CSS (nu valoarea copiată). Asta înseamnă că bg-card devine
-   background-color: var(--tw-card) — valoarea se citește la runtime,
-   deci comutarea temei funcționează fără nicio modificare în componente. */
+/* @theme inline: Tailwind generează utilitare care referențiază var() CSS.
+   bg-primary devine background-color: var(--primary) — valoarea se citește
+   la runtime, deci comutarea temei funcționează fără nicio modificare în componente. */
 @theme inline {
-  --color-card: var(--tw-card);
-  --color-card-foreground: var(--tw-card-fg);
-  --color-primary: var(--tw-primary);
-  --color-primary-foreground: var(--tw-primary-fg);
-  --color-muted-foreground: var(--tw-muted-fg);
-  --color-border: var(--tw-border);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
 :root {
@@ -70,23 +111,18 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow: rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+/* Variabilele de pagină pentru dark mode — acum controle de .dark, nu de media query. */
+.dark {
+  --text: #9ca3af;
+  --text-h: #f3f4f6;
+  --bg: #16171d;
+  --border: #2e303a;
+  --code-bg: #1f2028;
+  --accent: #c084fc;
+  --accent-bg: rgba(192, 132, 252, 0.15);
+  --accent-border: rgba(192, 132, 252, 0.5);
+  --social-bg: rgba(47, 48, 58, 0.5);
+  --shadow: rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
 }
 
 #root {

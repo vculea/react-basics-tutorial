@@ -16,6 +16,7 @@
 
 import { useState, useEffect } from "react";
 import type { CSSProperties } from "react";
+import { Button } from "@/components/ui/button";
 
 // ── Varianta 1: style={} cu culori hardcodate ────────────────────────────────
 // Funcționează vizual, dar e fragil: culorile sunt inventate pe loc (#fafafa,
@@ -87,9 +88,9 @@ export function TailwindSetup() {
 
   return (
     <div>
-      <button onClick={() => setDark(d => !d)} className="bg-primary text-primary-foreground mb-6 rounded-md px-4 py-2 text-sm font-medium transition-colors">
-        Temă activă: {dark ? "întunecată 🌙" : "luminoasă ☀️"}
-      </button>
+      <Button onClick={() => setDark(d => !d)} className="mb-6">
+        Temă activă: {dark ? "întunecate 🌙" : "luminoasă ☀️"}
+      </Button>
 
       {/* Cele două carduri stau unul lângă altul ca să vezi diferența pe loc */}
       <div className="flex flex-wrap gap-6">

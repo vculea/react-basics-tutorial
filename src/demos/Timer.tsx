@@ -8,6 +8,7 @@
 // Tot ce "porneste ceva in afara React" sta intr-un useEffect.
 
 import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
 
 // Contor de modul: supravietuieste re-render-urilor si montarilor/demontarilor.
 // Acceptabil DOAR in efecte, nu in corpul componentei (ar rula la fiecare render,
@@ -92,17 +93,18 @@ export function Timer() {
   return (
     <div>
       <p style={{ fontSize: "5rem", margin: "0.5rem 0" }}>{seconds}s</p>
-      <button onClick={() => setRunning(r => !r)}>{running ? "Pauză" : "Pornește"}</button>
+      <Button onClick={() => setRunning(r => !r)}>{running ? "Pauzeă" : "Pornește"}</Button>
       {/* Reset: opreste intervalul (setRunning false declanseaza cleanup-ul
           efectului 1) si reinitializeaza secundele. */}
-      <button
+      <Button
+        variant="outline"
         onClick={() => {
           setRunning(false);
           setSeconds(0);
         }}
       >
         Reset
-      </button>
+      </Button>
     </div>
   );
 }

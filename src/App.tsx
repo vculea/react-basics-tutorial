@@ -9,7 +9,9 @@ import { LiftingState } from "@/demos/LiftingState";
 import { DemoMenu } from "@/demos/DemoMenu";
 import { PathAlias } from "@/demos/PathAlias";
 import { TailwindSetup } from "@/demos/TailwindSetup";
+import { ShadcnSetup } from "@/demos/ShadcnSetup";
 import { DemoTab } from "@/components/DemoTab";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 // Sursa unica de adevar: activeId. Titlul, continutul si butonul selectat
 // se DERIVEAZA din el — nu tinem in state si lista si elementul activ separat.
@@ -25,7 +27,8 @@ const demos: Demo[] = [
   { id: "lifting-state", step: 6, title: "Lifting State", element: <LiftingState /> },
   { id: "demo-menu", step: 7, title: "meniu de navigare", element: <DemoMenu /> },
   { id: "path-alias", step: 8, title: "path alias (@/)", element: <PathAlias /> },
-  { id: "tailwind-setup", step: 9, title: "Tailwind CSS (utility-first)", element: <TailwindSetup /> }
+  { id: "tailwind-setup", step: 9, title: "Tailwind CSS (utility-first)", element: <TailwindSetup /> },
+  { id: "shadcn-setup", step: 10, title: "shadcn/ui (componente gata)", element: <ShadcnSetup /> }
 ];
 
 function App() {
@@ -35,11 +38,12 @@ function App() {
 
   return (
     <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
-      {/* paddingTop lasa spatiu pentru badge-urile care depasesc chenarul butonului */}
-      <nav style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", paddingTop: "1rem", marginBottom: "1.5rem" }}>
+      {/* paddingTop lasă spațiu pentru badge-urile care depășesc chenarul butonului */}
+      <nav style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", paddingTop: "1rem", marginBottom: "1.5rem", alignItems: "center" }}>
         {demos.map(d => (
           <DemoTab key={d.id} step={d.step} title={d.title} active={d.id === activeId} onClick={() => setActiveId(d.id)} />
         ))}
+        <ThemeToggle />
       </nav>
       <h1>
         Pas {active.step} — {active.title}
