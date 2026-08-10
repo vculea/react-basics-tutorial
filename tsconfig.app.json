@@ -16,9 +16,9 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
-    /* Path alias — @/ → src/. Fara baseUrl + paths, TypeScript nu stie sa
-       rezolve @/ si IDE-ul raporteaza erori. Vite are configuratia sa separata. */
-    "baseUrl": ".",
+    /* Path alias — @/ → src/. Fara paths, TypeScript nu stie sa rezolve @/
+       si IDE-ul raporteaza erori. Vite are configuratia sa separata.
+       In TypeScript 5+, paths functioneaza fara baseUrl (deprecat in TS7). */
     "paths": { "@/*": ["./src/*"] },
 
     /* Linting */

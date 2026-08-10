@@ -102,6 +102,22 @@ The `?? demos[0]` fallback exists so `active` is never `undefined` — that is w
 - One default export per demo file: the demo component. Everything else is a named export.
 - Identifiers, file names, `docs/` and `README.md` are in **English**.
 
+### Imports
+
+Use the `@/` alias for all internal imports — never relative paths (`./`, `../`).
+
+```ts
+import { DemoTab } from "@/components/DemoTab"; // corect
+import { DemoTab } from "../../components/DemoTab"; // interzis
+```
+
+The alias is configured in two places that must stay in sync:
+
+- `tsconfig.app.json` → `"paths": { "@/*": ["./src/*"] }` — for TypeScript / IDE
+- `vite.config.ts` → `resolve.alias` — for the bundler
+
+External packages (`react`, `vite`, etc.) keep their normal bare-specifier imports.
+
 ### Comments
 
 Comments in `src/` are in **Romanian** — they are the user's learning notes, not production documentation.

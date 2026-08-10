@@ -10,7 +10,7 @@ export default defineConfig({
   // sa fie in sync: tsconfig.app.json pentru IDE, vite.config.ts pentru bundler.
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
+      "@": path.resolve(import.meta.dirname, "./src")
+    }
+  }
 });

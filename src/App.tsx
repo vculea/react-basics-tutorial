@@ -1,13 +1,14 @@
 import { useState } from "react";
 import type { ReactNode } from "react";
-import { Counter } from "./demos/Counter";
-import { CounterClass } from "./demos/CounterClass";
-import { PureFunctions } from "./demos/PureFunctions";
-import { PrettierFormat } from "./demos/PrettierFormat";
-import { Timer } from "./demos/Timer";
-import { LiftingState } from "./demos/LiftingState";
-import { DemoMenu } from "./demos/DemoMenu";
-import { DemoTab } from "./components/DemoTab";
+import { Counter } from "@/demos/Counter";
+import { CounterClass } from "@/demos/CounterClass";
+import { PureFunctions } from "@/demos/PureFunctions";
+import { PrettierFormat } from "@/demos/PrettierFormat";
+import { Timer } from "@/demos/Timer";
+import { LiftingState } from "@/demos/LiftingState";
+import { DemoMenu } from "@/demos/DemoMenu";
+import { PathAlias } from "@/demos/PathAlias";
+import { DemoTab } from "@/components/DemoTab";
 
 // Sursa unica de adevar: activeId. Titlul, continutul si butonul selectat
 // se DERIVEAZA din el — nu tinem in state si lista si elementul activ separat.
@@ -21,7 +22,8 @@ const demos: Demo[] = [
   { id: "prettier-format", step: 4, title: "Prettier (formatare automată)", element: <PrettierFormat /> },
   { id: "timer", step: 5, title: "useEffect (cronometru)", element: <Timer /> },
   { id: "lifting-state", step: 6, title: "Lifting State", element: <LiftingState /> },
-  { id: "demo-menu", step: 7, title: "meniu de navigare", element: <DemoMenu /> }
+  { id: "demo-menu", step: 7, title: "meniu de navigare", element: <DemoMenu /> },
+  { id: "path-alias", step: 8, title: "path alias (@/)", element: <PathAlias /> }
 ];
 
 function App() {
