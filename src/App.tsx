@@ -5,6 +5,7 @@ import { CounterClass } from "./demos/CounterClass";
 import { PureFunctions } from "./demos/PureFunctions";
 import { PrettierFormat } from "./demos/PrettierFormat";
 import { Timer } from "./demos/Timer";
+import { LiftingState } from "./demos/LiftingState";
 
 // Registrul de demo-uri: adaugarea unui pas nou = un fisier nou in demos/ + o
 // intrare noua aici. Nimic altceva nu se schimba in acest fisier.
@@ -15,7 +16,8 @@ const demos: Demo[] = [
   { id: "counter-class", step: 2, title: "class Component (vechi)", element: <CounterClass /> },
   { id: "pure-functions", step: 3, title: "funcții pure vs. impure", element: <PureFunctions /> },
   { id: "prettier-format", step: 4, title: "Prettier (formatare automată)", element: <PrettierFormat /> },
-  { id: "timer", step: 5, title: "useEffect (cronometru)", element: <Timer /> }
+  { id: "timer", step: 5, title: "useEffect (cronometru)", element: <Timer /> },
+  { id: "lifting-state", step: 6, title: "Lifting State (stare ridicată)", element: <LiftingState /> }
 ];
 
 function App() {
