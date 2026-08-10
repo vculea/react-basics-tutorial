@@ -4,6 +4,7 @@ import { Counter } from "./demos/Counter";
 import { CounterClass } from "./demos/CounterClass";
 import { PureFunctions } from "./demos/PureFunctions";
 import { PrettierFormat } from "./demos/PrettierFormat";
+import { Timer } from "./demos/Timer";
 
 // Registrul de demo-uri: adaugarea unui pas nou = un fisier nou in demos/ + o
 // intrare noua aici. Nimic altceva nu se schimba in acest fisier.
@@ -11,24 +12,10 @@ type Demo = { id: string; step: number; title: string; element: ReactNode };
 
 const demos: Demo[] = [
   { id: "counter", step: 1, title: "useState", element: <Counter /> },
-  {
-    id: "counter-class",
-    step: 2,
-    title: "class Component (vechi)",
-    element: <CounterClass />
-  },
-  {
-    id: "pure-functions",
-    step: 3,
-    title: "funcții pure vs. impure",
-    element: <PureFunctions />
-  },
-  {
-    id: "prettier-format",
-    step: 4,
-    title: "Prettier (formatare automată)",
-    element: <PrettierFormat />
-  }
+  { id: "counter-class", step: 2, title: "class Component (vechi)", element: <CounterClass /> },
+  { id: "pure-functions", step: 3, title: "funcții pure vs. impure", element: <PureFunctions /> },
+  { id: "prettier-format", step: 4, title: "Prettier (formatare automată)", element: <PrettierFormat /> },
+  { id: "timer", step: 5, title: "useEffect (cronometru)", element: <Timer /> }
 ];
 
 function App() {

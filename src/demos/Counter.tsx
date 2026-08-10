@@ -36,6 +36,7 @@ export function Counter() {
           })
         }
       >
+        {" "}
         -1
       </button>
 
@@ -44,7 +45,6 @@ export function Counter() {
       <button
         type="button"
         onClick={() => {
-          //   count++;
           clickCount++;
         }}
       >
