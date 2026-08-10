@@ -1,3 +1,44 @@
+@import "tailwindcss";
+
+/* ── Tokeni de temă Tailwind (OKLCH) ────────────────────────────────────────
+   De ce OKLCH? Spațiu perceptual uniform — pasul între două culori adiacente
+   e același peste tot pe scalară, spre deosebire de sRGB sau HSL.
+   Valorile brute stau în :root / .dark; @theme inline le expune ca utilitare.
+   Comutarea temei = o singură clasă pe <html>, nu umblat prin fiecare componentă.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --tw-card: oklch(0.98 0 0);
+  --tw-card-fg: oklch(0.15 0 0);
+  --tw-primary: oklch(0.55 0.22 265);
+  --tw-primary-fg: oklch(0.98 0 0);
+  --tw-muted-fg: oklch(0.55 0.02 240);
+  --tw-border: oklch(0.9 0 0);
+}
+
+/* Clasa .dark pe <html> comută toate utilitarele dintr-o dată. */
+.dark {
+  --tw-card: oklch(0.18 0.01 240);
+  --tw-card-fg: oklch(0.92 0 0);
+  --tw-primary: oklch(0.72 0.18 265);
+  --tw-primary-fg: oklch(0.15 0 0);
+  --tw-muted-fg: oklch(0.65 0.01 240);
+  --tw-border: oklch(0.28 0.01 240);
+}
+
+/* @theme inline: Tailwind generează utilitare care referențiază direct
+   variabila CSS (nu valoarea copiată). Asta înseamnă că bg-card devine
+   background-color: var(--tw-card) — valoarea se citește la runtime,
+   deci comutarea temei funcționează fără nicio modificare în componente. */
+@theme inline {
+  --color-card: var(--tw-card);
+  --color-card-foreground: var(--tw-card-fg);
+  --color-primary: var(--tw-primary);
+  --color-primary-foreground: var(--tw-primary-fg);
+  --color-muted-foreground: var(--tw-muted-fg);
+  --color-border: var(--tw-border);
+}
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;

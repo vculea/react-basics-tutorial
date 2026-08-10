@@ -8,6 +8,7 @@ import { Timer } from "@/demos/Timer";
 import { LiftingState } from "@/demos/LiftingState";
 import { DemoMenu } from "@/demos/DemoMenu";
 import { PathAlias } from "@/demos/PathAlias";
+import { TailwindSetup } from "@/demos/TailwindSetup";
 import { DemoTab } from "@/components/DemoTab";
 
 // Sursa unica de adevar: activeId. Titlul, continutul si butonul selectat
@@ -23,7 +24,8 @@ const demos: Demo[] = [
   { id: "timer", step: 5, title: "useEffect (cronometru)", element: <Timer /> },
   { id: "lifting-state", step: 6, title: "Lifting State", element: <LiftingState /> },
   { id: "demo-menu", step: 7, title: "meniu de navigare", element: <DemoMenu /> },
-  { id: "path-alias", step: 8, title: "path alias (@/)", element: <PathAlias /> }
+  { id: "path-alias", step: 8, title: "path alias (@/)", element: <PathAlias /> },
+  { id: "tailwind-setup", step: 9, title: "Tailwind CSS (utility-first)", element: <TailwindSetup /> }
 ];
 
 function App() {
