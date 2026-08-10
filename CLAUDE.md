@@ -82,7 +82,7 @@ plus the active id in state, and the lookup:
 
 ```ts
 const [activeId, setActiveId] = useState("counter");
-const active = demos.find((d) => d.id === activeId) ?? demos[0];
+const active = demos.find(d => d.id === activeId) ?? demos[0];
 ```
 
 The `?? demos[0]` fallback exists so `active` is never `undefined` — that is what lets us avoid a non-null assertion (`!`), which is banned.

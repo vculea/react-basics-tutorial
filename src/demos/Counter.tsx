@@ -28,10 +28,10 @@ export function Counter() {
       {/* Forma cu functie (c => c + 1) e sigura cand mai multe update-uri
           se cumuleaza rapid: React garanteaza ca 'c' este intotdeauna valoarea
           cea mai recenta, nu o copie veche capturata intr-un closure anterior. */}
-      <button onClick={() => setCount((c) => c + 1)}>+1</button>
+      <button onClick={() => setCount(c => c + 1)}>+1</button>
       <button
         onClick={() =>
-          setCount((c) => {
+          setCount(c => {
             return c - 1;
           })
         }

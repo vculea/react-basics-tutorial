@@ -28,11 +28,11 @@ export class CounterClass extends Component<{}, CounterClassState> {
   state: CounterClassState = { count: 0 };
 
   increment = () => {
-    this.setState((s) => ({ count: s.count + 1 }));
+    this.setState(s => ({ count: s.count + 1 }));
   };
 
   decrement = () => {
-    this.setState((s) => ({ count: s.count - 1 }));
+    this.setState(s => ({ count: s.count - 1 }));
   };
 
   reset = () => {
@@ -46,9 +46,7 @@ export class CounterClass extends Component<{}, CounterClassState> {
   render() {
     return (
       <div>
-        <p style={{ fontSize: "5rem", margin: "0.5rem 0" }}>
-          {this.state.count}
-        </p>
+        <p style={{ fontSize: "5rem", margin: "0.5rem 0" }}>{this.state.count}</p>
         <button onClick={() => this.increment()}>+1</button>
         <button onClick={this.decrement}>-1</button>
         <button onClick={this.reset}>Reset</button>

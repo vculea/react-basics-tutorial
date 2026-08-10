@@ -47,9 +47,7 @@ function impureConvert(ron: number, rate: number): number {
   const eur = ron / rate;
   // `as HTMLInputElement` e necesar: getElementById returnează Element | null,
   // iar `.checked` există doar pe HTMLInputElement.
-  const checkbox = document.getElementById(
-    COMISION_ID,
-  ) as HTMLInputElement | null;
+  const checkbox = document.getElementById(COMISION_ID) as HTMLInputElement | null;
   if (checkbox?.checked) {
     return eur * (1 - COMISION_PCT);
   }
@@ -63,10 +61,9 @@ export function PureFunctions() {
   // schimbarea lui declanșează re-render, bifarea checkbox-ului NU.
   const [rate, setRate] = useState(RATE_INITIAL);
 
-  const addRon = (delta: number) => setRon((prev) => Math.max(0, prev + delta));
+  const addRon = (delta: number) => setRon(prev => Math.max(0, prev + delta));
 
-  const addRate = (delta: number) =>
-    setRate((prev) => Math.round((prev + delta) * 100) / 100);
+  const addRate = (delta: number) => setRate(prev => Math.round((prev + delta) * 100) / 100);
 
   return (
     <div style={{ fontFamily: "monospace", lineHeight: 2 }}>
@@ -118,10 +115,8 @@ export function PureFunctions() {
       </table>
 
       <p style={{ marginTop: "1rem", color: "#666", fontSize: "0.9rem" }}>
-        Pas de reproductibil: bifează „aplică comision" →{" "}
-        <em>nimic nu se schimbă</em>. Apoi apasă +10 → impureConvert aplică
-        comisionul abia acum. pureConvert nu are de unde să știe de checkbox —
-        deci nici nu îl aplică.
+        Pas de reproductibil: bifează „aplică comision" → <em>nimic nu se schimbă</em>. Apoi apasă +10 → impureConvert aplică comisionul abia acum.
+        pureConvert nu are de unde să știe de checkbox — deci nici nu îl aplică.
       </p>
     </div>
   );
