@@ -15,20 +15,20 @@ const demos: Demo[] = [
     id: "counter-class",
     step: 2,
     title: "class Component (vechi)",
-    element: <CounterClass />,
+    element: <CounterClass />
   },
   {
     id: "pure-functions",
     step: 3,
     title: "funcții pure vs. impure",
-    element: <PureFunctions />,
+    element: <PureFunctions />
   },
   {
     id: "prettier-format",
     step: 4,
     title: "Prettier (formatare automată)",
-    element: <PrettierFormat />,
-  },
+    element: <PrettierFormat />
+  }
 ];
 
 function App() {

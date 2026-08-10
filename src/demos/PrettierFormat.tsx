@@ -8,8 +8,8 @@ export function PrettierFormat() {
       <h2>Configurație Prettier</h2>
 
       <p>
-        Prettier este un <strong>formatter de cod</strong> — rescrie fișierele respectând un set fix de reguli, fără să
-        schimbe ce face codul. Rulează automat la salvare și poate fi rulat și din terminal.
+        Prettier este un <strong>formatter de cod</strong> — rescrie fișierele respectând un set fix de reguli, fără să schimbe ce face codul. Rulează automat
+        la salvare și poate fi rulat și din terminal.
       </p>
 
       <h3>Setările din .prettierrc</h3>
@@ -57,8 +57,7 @@ export function PrettierFormat() {
               <code>"avoid"</code>
             </td>
             <td style={{ padding: "4px 12px" }}>
-              omite parantezele la arrow functions cu un singur parametru: <code>x =&gt; x + 1</code> în loc de{" "}
-              <code>(x) =&gt; x + 1</code>
+              omite parantezele la arrow functions cu un singur parametru: <code>x =&gt; x + 1</code> în loc de <code>(x) =&gt; x + 1</code>
             </td>
           </tr>
           <tr>
@@ -68,9 +67,7 @@ export function PrettierFormat() {
             <td style={{ padding: "4px 12px" }}>
               <code>prettier-plugin-tailwindcss</code>
             </td>
-            <td style={{ padding: "4px 12px" }}>
-              sortează automat clasele Tailwind CSS — nu are efect acum, intră în joc când adăugăm Tailwind
-            </td>
+            <td style={{ padding: "4px 12px" }}>sortează automat clasele Tailwind CSS — nu are efect acum, intră în joc când adăugăm Tailwind</td>
           </tr>
         </tbody>
       </table>
@@ -83,8 +80,8 @@ npm run format:check  # verifică fără să modifice — util în CI`}
 
       <h3>Formatare automată la salvare</h3>
       <p>
-        Fișierul <code>.vscode/settings.json</code> este comis în proiect, deci toți membrii echipei primesc aceleași
-        setări de editor fără să configureze nimic manual:
+        Fișierul <code>.vscode/settings.json</code> este comis în proiect, deci toți membrii echipei primesc aceleași setări de editor fără să configureze nimic
+        manual:
       </p>
       <pre style={{ background: "#f4f4f4", padding: "0.75rem 1rem", borderRadius: 4 }}>
         {`{
@@ -98,8 +95,7 @@ npm run format:check  # verifică fără să modifice — util în CI`}
 
       <h3>Cum îi spui formatter-ului să lase un bloc în pace</h3>
       <p>
-        Comentariul <code>// prettier-ignore</code> pus imediat înainte de o declarație îi spune lui Prettier să lase
-        exact acel nod neatins:
+        Comentariul <code>// prettier-ignore</code> pus imediat înainte de o declarație îi spune lui Prettier să lase exact acel nod neatins:
       </p>
       <pre style={{ background: "#f4f4f4", padding: "0.75rem 1rem", borderRadius: 4 }}>
         {`// prettier-ignore
@@ -110,17 +106,14 @@ const matrix = [
 ];`}
       </pre>
       <p>
-        În JSX, forma echivalentă este <code>{"{/* prettier-ignore */}"}</code> și se aplică elementului următor din
-        arbore.
+        În JSX, forma echivalentă este <code>{"{/* prettier-ignore */}"}</code> și se aplică elementului următor din arbore.
       </p>
       <p>
-        <strong>Important:</strong> directiva afectează <em>doar nodul imediat următor</em> — nu există „ignoră de aici
-        până aici" în JS/TS. Variantele <code>prettier-ignore-start</code> / <code>prettier-ignore-end</code>{" "}
-        funcționează doar în Markdown, YAML și HTML.
+        <strong>Important:</strong> directiva afectează <em>doar nodul imediat următor</em> — nu există „ignoră de aici până aici" în JS/TS. Variantele{" "}
+        <code>prettier-ignore-start</code> / <code>prettier-ignore-end</code> funcționează doar în Markdown, YAML și HTML.
       </p>
       <p>
-        <strong>Folosit rar și motivat</strong> — pentru matrice, tabele de valori aliniate în coloane — nu ca să ocolim
-        convenția de formatare.
+        <strong>Folosit rar și motivat</strong> — pentru matrice, tabele de valori aliniate în coloane — nu ca să ocolim convenția de formatare.
       </p>
     </div>
   );

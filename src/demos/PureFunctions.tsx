@@ -115,8 +115,8 @@ export function PureFunctions() {
       </table>
 
       <p style={{ marginTop: "1rem", color: "#666", fontSize: "0.9rem" }}>
-        Pas de reproductibil: bifează „aplică comision" → <em>nimic nu se schimbă</em>. Apoi apasă +10 → impureConvert aplică comisionul abia acum.
-        pureConvert nu are de unde să știe de checkbox — deci nici nu îl aplică.
+        Pas de reproductibil: bifează „aplică comision" → <em>nimic nu se schimbă</em>. Apoi apasă +10 → impureConvert aplică comisionul abia acum. pureConvert
+        nu are de unde să știe de checkbox — deci nici nu îl aplică.
       </p>
     </div>
   );
@@ -126,9 +126,9 @@ export function PureFunctions() {
 const th: React.CSSProperties = {
   border: "1px solid #ccc",
   padding: "0.4rem 0.8rem",
-  background: "#f5f5f5",
+  background: "#f5f5f5"
 };
 const td: React.CSSProperties = {
   border: "1px solid #ccc",
-  padding: "0.4rem 0.8rem",
+  padding: "0.4rem 0.8rem"
 };
