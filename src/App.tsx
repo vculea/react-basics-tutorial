@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type { ReactNode } from "react";
 import { Counter } from "@/demos/Counter";
 import { CounterClass } from "@/demos/CounterClass";
@@ -11,8 +10,10 @@ import { PathAlias } from "@/demos/PathAlias";
 import { TailwindSetup } from "@/demos/TailwindSetup";
 import { ShadcnSetup } from "@/demos/ShadcnSetup";
 import { CustomHooks } from "@/demos/CustomHooks";
+import { ContextDemo } from "@/demos/ContextDemo";
 import { DemoTab } from "@/components/DemoTab";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { ActiveStepProvider, useActiveStep } from "@/context/ActiveStepProvider";
 
 // Sursa unica de adevar: activeId. Titlul, continutul si butonul selectat
 // se DERIVEAZA din el — nu tinem in state si lista si elementul activ separat.
@@ -30,19 +31,19 @@ const demos: Demo[] = [
   { id: "path-alias", step: 8, title: "path alias (@/)", element: <PathAlias /> },
   { id: "tailwind-setup", step: 9, title: "Tailwind CSS (utility-first)", element: <TailwindSetup /> },
   { id: "shadcn-setup", step: 10, title: "shadcn/ui (componente gata)", element: <ShadcnSetup /> },
-  { id: "custom-hooks", step: 11, title: "custom hooks (useCounter, useWindowSize)", element: <CustomHooks /> }
+  { id: "custom-hooks", step: 11, title: "custom hooks (useCounter, useWindowSize)", element: <CustomHooks /> },
+  { id: "context", step: 12, title: "Context API (stare partajata)", element: <ContextDemo /> }
 ];
 
-function App() {
-  // useState: selectia traieste in memoria React — se pierde la refresh.
-  const [activeId, setActiveId] = useState(demos[0].id);
-  const active = demos.find(d => d.id === activeId) ?? demos[0];
+function AppContent() {
+  const { activeId, setActiveId, steps } = useActiveStep();
+  const active = steps.find(demo => demo.id === activeId) ?? steps[0];
 
   return (
     <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
       {/* paddingTop lasă spațiu pentru badge-urile care depășesc chenarul butonului */}
       <nav style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", paddingTop: "1rem", marginBottom: "1.5rem", alignItems: "center" }}>
-        {demos.map(d => (
+        {steps.map(d => (
           <DemoTab key={d.id} step={d.step} title={d.title} active={d.id === activeId} onClick={() => setActiveId(d.id)} />
         ))}
         <ThemeToggle />
@@ -52,6 +53,14 @@ function App() {
       </h1>
       {active.element}
     </div>
+  );
+}
+
+function App() {
+  return (
+    <ActiveStepProvider steps={demos}>
+      <AppContent />
+    </ActiveStepProvider>
   );
 }
 
