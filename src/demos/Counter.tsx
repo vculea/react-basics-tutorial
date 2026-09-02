@@ -21,12 +21,12 @@ export function Counter() {
   const [count, setCount] = useState(0);
 
   return (
-    <div>
+    <div className="flex flex-col items-center gap-4">
       {/* count vine direct din starea React — orice apel setCount declanseaza
           o re-rulare a functiei Counter si React actualizeaza DOM-ul. */}
-      <p style={{ fontSize: "5rem", margin: "0.5rem 0", lineHeight: 1 }}>{count}</p>
+      <p className="text-7xl leading-none font-semibold tabular-nums">{count}</p>
 
-      <div style={{ display: "flex", gap: "0.5rem", justifyContent: "center", flexWrap: "wrap" }}>
+      <div className="flex flex-wrap justify-center gap-2">
         <Button variant="outline" size="sm" onClick={() => setCount(c => c + 1)}>
           +1
         </Button>

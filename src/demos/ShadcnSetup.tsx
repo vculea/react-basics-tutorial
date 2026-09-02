@@ -23,12 +23,13 @@ function ManualSection() {
     <div className="flex flex-col gap-3">
       <h3 className="text-muted-foreground text-sm font-semibold tracking-wide uppercase">Manual</h3>
 
-      {/* focus-visible lipsește → Tab nu lasă niciun indiciu vizual */}
-      <button className="rounded-md bg-neutral-900 px-4 py-2 text-sm text-white hover:bg-neutral-700">Buton normal</button>
+      <Button variant="outline">Buton normal</Button>
 
       {/* disabled="false" + opacity → PARE dezactivat, dar Tab îl atinge,
           cursorul rămâne pointer și onClick încă funcționează */}
-      <button className="cursor-pointer rounded-md bg-neutral-900 px-4 py-2 text-sm text-white opacity-50">Buton „dezactivat" (fals)</button>
+      <Button variant="outline" className={cn("cursor-pointer opacity-50")}>
+        Buton „dezactivat" (fals)
+      </Button>
 
       <p className="text-muted-foreground text-xs">
         Apasă <kbd className="border-border rounded border px-1">Tab</kbd> și observă: primul buton nu arată focus, al doilea primește focus deși pare dezactivat.
@@ -65,17 +66,17 @@ export function ShadcnSetup() {
     <div className="space-y-8">
       {/* Comparație pe două coloane */}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-        <div className="border-border rounded-lg border p-5">
+        <div className="border-border bg-card text-card-foreground rounded-lg border p-5">
           <ManualSection />
         </div>
-        <div className="border-border rounded-lg border p-5">
+        <div className="border-border bg-card text-card-foreground rounded-lg border p-5">
           <ShadcnSection />
         </div>
       </div>
 
       {/* Toate variantele */}
-      <div>
-        <p className="text-muted-foreground mb-3 text-sm">
+      <div className="flex flex-col gap-3">
+        <p className="text-muted-foreground text-sm">
           Toate variantele — generate din <code>variants</code> array, zero cod duplicat:
         </p>
         <div className="flex flex-wrap gap-3">

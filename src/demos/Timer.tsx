@@ -91,12 +91,12 @@ export function Timer() {
   }, []);
 
   return (
-    <div>
-      <p style={{ fontSize: "5rem", margin: "0.5rem 0", lineHeight: 1 }}>
+    <div className="flex flex-col items-center gap-4">
+      <p className="flex items-baseline text-7xl leading-none font-semibold tabular-nums">
         {seconds}
-        <span style={{ fontSize: "1.5rem", marginLeft: "0.25rem", opacity: 0.6 }}>s</span>
+        <span className="text-muted-foreground ml-1 text-2xl">s</span>
       </p>
-      <div style={{ display: "flex", gap: "0.5rem", justifyContent: "center" }}>
+      <div className="flex flex-wrap justify-center gap-2">
         <Button onClick={() => setRunning(r => !r)}>{running ? "Pauze" : "Pornește"}</Button>
         {/* Reset: opreste intervalul (setRunning false declanseaza cleanup-ul
           efectului 1) si reinitializeaza secundele. */}

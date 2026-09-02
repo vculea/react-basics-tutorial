@@ -21,14 +21,14 @@ export function DemoMenu() {
   const active = miniDemos.find(d => d.id === activeId) ?? miniDemos[0];
 
   return (
-    <div>
-      <section>
+    <div className="flex flex-col gap-8">
+      <section className="flex flex-col gap-4">
         <h2>Tiparul meniului (miniatură, ~15 linii)</h2>
         <p>
           Sursa unică de adevăr: <code>activeId = &quot;{activeId}&quot;</code>. Titlul și conținutul de mai jos sunt <em>derivate</em> din el, nu state separat.
         </p>
 
-        <nav style={{ display: "flex", gap: "0.5rem", marginBottom: "1rem" }}>
+        <nav className="flex flex-wrap gap-2">
           {miniDemos.map(d => (
             <Button key={d.id} variant={active.id === d.id ? "default" : "secondary"} size="sm" onClick={() => setActiveId(d.id)}>
               {d.label}
@@ -36,14 +36,14 @@ export function DemoMenu() {
           ))}
         </nav>
 
-        <div style={{ border: "1px solid #ccc", padding: "1rem", borderRadius: "4px" }}>
+        <div className="border-border bg-card text-card-foreground rounded-lg border p-4">
           <strong>{active.label}</strong> — {active.content}
         </div>
       </section>
 
-      <hr style={{ margin: "2rem 0" }} />
+      <hr className="border-border" />
 
-      <section>
+      <section className="flex flex-col gap-4">
         <h2>LOCAL vs. GLOBAL — ce se întâmplă la refresh?</h2>
 
         <p>
@@ -55,7 +55,7 @@ export function DemoMenu() {
           Același mecanism funcționează și cu URL-ul (query string sau hash).
         </p>
 
-        <p style={{ fontSize: "0.875rem", color: "#666" }}>
+        <p className="text-muted-foreground text-sm">
           Pentru un lab de învățare, <code>useState</code> simplu e suficient. Dacă vrei persistență, o adaugi mai târziu fără să schimbi tiparul — doar valoarea inițială a <code>useState</code> vine dintr-o altă sursă.
         </p>
       </section>

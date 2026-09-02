@@ -24,19 +24,21 @@ type PriceCardProps = {
 // transmisă prin `onChange` — ca un parametru de tip funcție în Java.
 function PriceCard({ label, amount, currency, step = 1, onChange }: PriceCardProps) {
   return (
-    <div style={{ border: "1px solid #ccc", borderRadius: 8, padding: "1rem", minWidth: 160 }}>
-      <div style={{ fontWeight: "bold", marginBottom: 8 }}>{label}</div>
-      <div style={{ fontSize: "1.5rem", marginBottom: 8 }}>
-        {amount} <span style={{ fontSize: "0.85rem", opacity: 0.6 }}>{currency}</span>
+    <div className="border-border bg-card text-card-foreground flex min-w-40 flex-col gap-3 rounded-lg border p-4">
+      <div className="font-semibold">{label}</div>
+      <div className="text-2xl font-semibold tabular-nums">
+        {amount} <span className="text-muted-foreground text-sm font-normal">{currency}</span>
       </div>
       {/* Butoanele NU modifică o stare locală — apelează `onChange`,
           iar părintele decide cum se propagă schimbarea. */}
-      <Button variant="outline" size="sm" onClick={() => onChange(amount - step)}>
-        −
-      </Button>
-      <Button variant="outline" size="sm" className="ml-2" onClick={() => onChange(amount + step)}>
-        +
-      </Button>
+      <div className="flex gap-2">
+        <Button variant="outline" size="sm" onClick={() => onChange(amount - step)}>
+          −
+        </Button>
+        <Button variant="outline" size="sm" onClick={() => onChange(amount + step)}>
+          +
+        </Button>
+      </div>
     </div>
   );
 }
@@ -48,11 +50,11 @@ export function LiftingState() {
   const rate = 5; // 1 RON = 5 puncte (curs fictiv)
 
   return (
-    <div>
+    <div className="flex flex-col gap-6">
       <p>
         Modifică valoarea din oricare card — celălalt se actualizează instant, pentru că ambele citesc <em>aceeași</em> variabilă de stare.
       </p>
-      <div style={{ display: "flex", gap: "2rem" }}>
+      <div className="flex flex-wrap gap-6">
         {/* Cardul în RON: citește direct `amount`, scrie direct prin `setAmount`. */}
         <PriceCard label="Sumă" amount={amount} currency="RON" onChange={setAmount} />
 

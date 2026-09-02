@@ -29,8 +29,8 @@ type CounterPanelProps = {
 
 function CounterPanel({ label, count, onIncrement }: CounterPanelProps) {
   return (
-    <div style={{ border: "1px solid #ccc", borderRadius: "4px", padding: "1rem" }}>
-      <h3 style={{ marginTop: 0 }}>{label}</h3>
+    <div className="border-border bg-card text-card-foreground flex flex-col items-start gap-3 rounded-lg border p-4">
+      <h3 className="font-semibold">{label}</h3>
       <p>
         Persoane: <strong>{count}</strong>
       </p>
@@ -41,7 +41,7 @@ function CounterPanel({ label, count, onIncrement }: CounterPanelProps) {
 
 function CodeBlock({ children }: { children: string }) {
   return (
-    <pre style={{ overflowX: "auto", background: "#f5f5f5", border: "1px solid #ddd", borderRadius: "4px", padding: "1rem", fontSize: "0.8rem" }}>
+    <pre className="border-border bg-muted text-foreground overflow-x-auto rounded-lg border p-4 text-left text-sm">
       <code>{children}</code>
     </pre>
   );
@@ -53,16 +53,20 @@ export function ContextDemo() {
   const adulti = useCounter(0, 1);
 
   return (
-    <div style={{ display: "grid", gap: "1.5rem" }}>
+    <div className="grid gap-6">
       <p>
         Am primit fara prop: <code>activeId = &quot;{activeId}&quot;</code>. Schimba un tab din header: valoarea se actualizeaza aici.
       </p>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "1rem" }}>
-        <section style={{ border: "1px solid #ccc", borderRadius: "4px", padding: "1rem" }}>
-          <h2 style={{ marginTop: 0 }}>GLOBAL — useContext</h2>
+      <div className="grid gap-4 md:grid-cols-2">
+        <section className="border-border bg-card text-card-foreground flex flex-col gap-4 rounded-lg border p-4">
+          <h2>GLOBAL — useContext</h2>
           <p>Acest dropdown si meniul din header scriu in aceeasi stare a provider-ului.</p>
-          <select value={activeId} onChange={event => setActiveId(event.target.value)} style={{ maxWidth: "100%", padding: "0.5rem" }}>
+          <select
+            value={activeId}
+            onChange={event => setActiveId(event.target.value)}
+            className="border-input bg-background text-foreground focus-visible:border-ring focus-visible:ring-ring/50 w-full rounded-md border px-3 py-2 outline-none focus-visible:ring-[3px]"
+          >
             {steps.map(step => (
               <option key={step.id} value={step.id}>
                 Pas {step.step} — {step.title}
@@ -71,10 +75,10 @@ export function ContextDemo() {
           </select>
         </section>
 
-        <section style={{ border: "1px solid #ccc", borderRadius: "4px", padding: "1rem" }}>
-          <h2 style={{ marginTop: 0 }}>LOCAL — useState, Pas 11</h2>
+        <section className="border-border bg-card text-card-foreground flex flex-col gap-4 rounded-lg border p-4">
+          <h2>LOCAL — useState, Pas 11</h2>
           <p>Fiecare apel useCounter are propria stare: copiii si adultii nu se influenteaza.</p>
-          <div style={{ display: "grid", gap: "0.75rem" }}>
+          <div className="grid gap-3">
             <CounterPanel label="Copii" count={copii.count} onIncrement={copii.increment} />
             <CounterPanel label="Adulti" count={adulti.count} onIncrement={adulti.increment} />
           </div>

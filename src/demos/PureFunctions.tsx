@@ -67,24 +67,24 @@ export function PureFunctions() {
   const addRate = (delta: number) => setRate(prev => Math.round((prev + delta) * 100) / 100);
 
   return (
-    <div style={{ fontFamily: "monospace", lineHeight: 2 }}>
+    <div className="flex max-w-3xl flex-col gap-4 font-mono leading-8">
       {/* ── Suma în RON ── */}
-      <div>
+      <div className="flex flex-wrap items-center justify-center gap-3">
         <Button variant="outline" size="sm" onClick={() => addRon(-10)}>
           −10
         </Button>
-        <span style={{ margin: "0 1rem" }}>{ron} RON</span>
+        <span>{ron} RON</span>
         <Button variant="outline" size="sm" onClick={() => addRon(10)}>
           +10
         </Button>
       </div>
 
       {/* ── Cursul zilei ── */}
-      <div>
+      <div className="flex flex-wrap items-center justify-center gap-3">
         <Button variant="outline" size="sm" onClick={() => addRate(-RATE_STEP)}>
           −
         </Button>
-        <span style={{ margin: "0 1rem" }}>1 EUR = {rate.toFixed(2)} RON</span>
+        <span>1 EUR = {rate.toFixed(2)} RON</span>
         <Button variant="outline" size="sm" onClick={() => addRate(RATE_STEP)}>
           +
         </Button>
@@ -101,42 +101,36 @@ export function PureFunctions() {
       </div>
 
       {/* ── Rezultate paralele ── */}
-      <table style={{ borderCollapse: "collapse", marginTop: "1rem" }}>
-        <thead>
-          <tr>
-            <th style={th}>Funcție</th>
-            <th style={th}>Rezultat</th>
-            <th style={th}>Comportament</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style={td}>pureConvert</td>
-            <td style={td}>{pureConvert(ron, rate).toFixed(2)} EUR</td>
-            <td style={td}>✅ se actualizează instant la orice modificare</td>
-          </tr>
-          <tr>
-            <td style={td}>impureConvert</td>
-            <td style={td}>{impureConvert(ron, rate).toFixed(2)} EUR</td>
-            <td style={td}>⚠️ comisionul se aplică abia la următorul render</td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="border-border overflow-x-auto rounded-lg border">
+        <table className="w-full border-collapse text-left text-sm">
+          <thead>
+            <tr>
+              <th className={th}>Funcție</th>
+              <th className={th}>Rezultat</th>
+              <th className={th}>Comportament</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className={td}>pureConvert</td>
+              <td className={td}>{pureConvert(ron, rate).toFixed(2)} EUR</td>
+              <td className={td}>✅ se actualizează instant la orice modificare</td>
+            </tr>
+            <tr>
+              <td className={td}>impureConvert</td>
+              <td className={td}>{impureConvert(ron, rate).toFixed(2)} EUR</td>
+              <td className={td}>⚠️ comisionul se aplică abia la următorul render</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-      <p style={{ marginTop: "1rem", color: "#666", fontSize: "0.9rem" }}>
+      <p className="text-muted-foreground text-sm">
         Pas de reproductibil: bifează „aplică comision" → <em>nimic nu se schimbă</em>. Apoi apasă +10 → impureConvert aplică comisionul abia acum. pureConvert nu are de unde să știe de checkbox — deci nici nu îl aplică.
       </p>
     </div>
   );
 }
 
-// Stiluri inline minime — fără dependințe noi
-const th: React.CSSProperties = {
-  border: "1px solid #ccc",
-  padding: "0.4rem 0.8rem",
-  background: "#f5f5f5"
-};
-const td: React.CSSProperties = {
-  border: "1px solid #ccc",
-  padding: "0.4rem 0.8rem"
-};
+const th = "border border-border bg-muted px-3 py-2 text-left font-semibold text-foreground";
+const td = "border border-border px-3 py-2";

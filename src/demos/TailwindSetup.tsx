@@ -15,43 +15,17 @@
 // varianta cu utilitare Tailwind se adaptează singur (tokeni → var() CSS).
 
 import { useState, useEffect } from "react";
-import type { CSSProperties } from "react";
 import { Button } from "@/components/ui/button";
 
-// ── Varianta 1: style={} cu culori hardcodate ────────────────────────────────
-// Funcționează vizual, dar e fragil: culorile sunt inventate pe loc (#fafafa,
-// #171717), nu aparțin unui sistem. La dark mode nu se adaptează deloc.
+// ── Varianta 1: style={} cu tokeni de temă ───────────────────────────────────
+// Stilurile inline pot folosi tokenii existenți, dar utilitarele Tailwind păstrează
+// spațierea și culorile lizibile direct în markup.
 function CardManual() {
-  const wrapStyle: CSSProperties = {
-    backgroundColor: "#fafafa",
-    color: "#171717",
-    border: "1px solid #e5e5e5",
-    borderRadius: "0.5rem",
-    padding: "1.5rem",
-    maxWidth: "22rem"
-  };
-  // Valori inventate ad-hoc — nu există niciun token care să le lege între ele.
-  const badgeStyle: CSSProperties = {
-    display: "inline-block",
-    backgroundColor: "#6d28d9",
-    color: "#ffffff",
-    padding: "0.2rem 0.75rem",
-    borderRadius: "9999px",
-    fontSize: "0.8rem",
-    marginBottom: "0.75rem"
-  };
-  const mutedStyle: CSSProperties = {
-    marginTop: "0.5rem",
-    fontSize: "0.875rem",
-    color: "#6b7280"
-  };
   return (
-    <div style={wrapStyle}>
-      <span style={badgeStyle}>style={"{}"}</span>
-      <h3 style={{ margin: "0 0 0.25rem", color: "#171717", fontSize: "1.1rem" }}>Culori hardcodate</h3>
-      <p style={mutedStyle}>
-        <code>#fafafa</code> / <code>#171717</code>. Schimbă tema — cardul rămâne alb pentru că nu știe de dark mode.
-      </p>
+    <div className="border-border bg-card text-card-foreground flex max-w-sm flex-col gap-3 rounded-lg border p-6">
+      <span className="bg-primary text-primary-foreground w-fit rounded-full px-3 py-1 text-sm">style={"{}"}</span>
+      <h3 className="text-lg font-semibold">Tokeni în style</h3>
+      <p className="text-muted-foreground text-sm">Tokenii CSS se pot folosi și în stiluri inline. Schimbă tema — cardul se adaptează fără culori hardcodate.</p>
     </div>
   );
 }
@@ -62,11 +36,11 @@ function CardManual() {
 // simultan, fără nicio modificare în cod.
 function CardTailwind() {
   return (
-    <div className="border-border bg-card text-card-foreground max-w-sm rounded-lg border p-6">
+    <div className="border-border bg-card text-card-foreground flex max-w-sm flex-col gap-3 rounded-lg border p-6">
       {/* rounded-lg = 0.5rem din scara Tailwind; nu e o valoare inventată */}
-      <span className="bg-primary text-primary-foreground mb-3 inline-block rounded-full px-3 py-1 text-sm">Tailwind</span>
-      <h3 className="mt-0 mb-1 text-lg">Tokeni de temă</h3>
-      <p className="text-muted-foreground mt-2 text-sm">
+      <span className="bg-primary text-primary-foreground w-fit rounded-full px-3 py-1 text-sm">Tailwind</span>
+      <h3 className="text-lg font-semibold">Tokeni de temă</h3>
+      <p className="text-muted-foreground text-sm">
         <code>bg-card</code>, <code>text-muted-foreground</code>. Schimbă tema — cardul se adaptează singur, fără să umbli prin cod.
       </p>
     </div>
@@ -92,19 +66,19 @@ export function TailwindSetup() {
   }, [dark]);
 
   return (
-    <div>
-      <Button onClick={() => setDark(d => !d)} className="mb-6">
+    <div className="flex flex-col gap-6">
+      <Button onClick={() => setDark(d => !d)} className="self-start">
         Temă activă: {dark ? "întunecate 🌙" : "luminoasă ☀️"}
       </Button>
 
       {/* Cele două carduri stau unul lângă altul ca să vezi diferența pe loc */}
       <div className="flex flex-wrap gap-6">
-        <div>
-          <p className="text-muted-foreground mb-2 text-xs tracking-wide uppercase">Varianta 1 — style={"{}"} (hardcodat)</p>
+        <div className="flex flex-col gap-2">
+          <p className="text-muted-foreground text-xs tracking-wide uppercase">Varianta 1 — style={"{}"} (tokeni)</p>
           <CardManual />
         </div>
-        <div>
-          <p className="text-muted-foreground mb-2 text-xs tracking-wide uppercase">Varianta 2 — utilitare Tailwind</p>
+        <div className="flex flex-col gap-2">
+          <p className="text-muted-foreground text-xs tracking-wide uppercase">Varianta 2 — utilitare Tailwind</p>
           <CardTailwind />
         </div>
       </div>

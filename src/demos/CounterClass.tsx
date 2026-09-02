@@ -46,9 +46,9 @@ export class CounterClass extends Component<{}, CounterClassState> {
   // separată de redesenare. La funcții, întreaga funcție joacă rolul lui render().
   render() {
     return (
-      <div>
-        <p style={{ fontSize: "5rem", margin: "0.5rem 0", lineHeight: 1 }}>{this.state.count}</p>
-        <div style={{ display: "flex", gap: "0.5rem", justifyContent: "center" }}>
+      <div className="flex flex-col items-center gap-4">
+        <p className="text-7xl leading-none font-semibold tabular-nums">{this.state.count}</p>
+        <div className="flex flex-wrap justify-center gap-2">
           <Button variant="outline" size="sm" onClick={() => this.increment()}>
             +1
           </Button>

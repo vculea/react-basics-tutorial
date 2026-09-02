@@ -40,15 +40,15 @@ function AppContent() {
   const active = steps.find(demo => demo.id === activeId) ?? steps[0];
 
   return (
-    <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
+    <div className="bg-background text-foreground min-h-svh px-4 py-6 sm:px-8">
       {/* paddingTop lasă spațiu pentru badge-urile care depășesc chenarul butonului */}
-      <nav style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", paddingTop: "1rem", marginBottom: "1.5rem", alignItems: "center" }}>
+      <nav className="mb-6 flex flex-wrap items-center gap-3 pt-2">
         {steps.map(d => (
           <DemoTab key={d.id} step={d.step} title={d.title} active={d.id === activeId} onClick={() => setActiveId(d.id)} />
         ))}
         <ThemeToggle />
       </nav>
-      <h1 style={{ fontSize: "clamp(1.25rem, 3vw, 2rem)", lineHeight: 1.3 }}>
+      <h1 className="text-foreground mb-8 text-2xl leading-tight font-semibold sm:text-3xl">
         Pas {active.step} — {active.title}
       </h1>
       {active.element}

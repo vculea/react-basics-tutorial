@@ -7,6 +7,7 @@
 
 import { useCounter } from "@/hooks/useCounter";
 import { useWindowSize } from "@/hooks/useWindowSize";
+import { Button } from "@/components/ui/button";
 
 // Preturile stau la nivel de modul — o singura sursa de adevar, nu valori "magice" in JSX.
 const PRET_COPIL = 2;
@@ -28,31 +29,26 @@ type GrupBoxProps = {
 
 function GrupBox({ titlu, pretUnitar, count, onIncrement, onDecrement, onReset }: GrupBoxProps) {
   return (
-    <div
-      style={{
-        border: "1px solid #ccc",
-        padding: "1rem",
-        borderRadius: "8px",
-        minWidth: "180px"
-      }}
-    >
-      <h3 style={{ margin: "0 0 0.5rem" }}>{titlu}</h3>
-      <p style={{ margin: "0.25rem 0", color: "#666" }}>{pretUnitar} lei / persoană</p>
-      <p style={{ margin: "0.25rem 0" }}>
+    <div className="border-border bg-card text-card-foreground flex min-w-45 flex-col gap-2 rounded-lg border p-4">
+      <h3 className="font-semibold">{titlu}</h3>
+      <p className="text-muted-foreground text-sm">{pretUnitar} lei / persoană</p>
+      <p>
         Persoane: <strong>{count}</strong>
       </p>
-      <p style={{ margin: "0.25rem 0" }}>
+      <p>
         Subtotal: <strong>{count * pretUnitar} lei</strong>
       </p>
-      <div style={{ display: "flex", gap: "0.5rem", marginTop: "0.75rem" }}>
+      <div className="flex gap-2 pt-1">
         {/* disabled cand count === 0: nu vrem numar negativ de persoane */}
-        <button onClick={onDecrement} disabled={count === 0}>
+        <Button variant="outline" size="sm" onClick={onDecrement} disabled={count === 0}>
           −1
-        </button>
-        <button onClick={onIncrement}>+1</button>
-        <button onClick={onReset} disabled={count === 0}>
+        </Button>
+        <Button variant="outline" size="sm" onClick={onIncrement}>
+          +1
+        </Button>
+        <Button variant="secondary" size="sm" onClick={onReset} disabled={count === 0}>
           Reset
-        </button>
+        </Button>
       </div>
     </div>
   );
@@ -75,33 +71,25 @@ export function CustomHooks() {
   const totalPret = copii.count * PRET_COPIL + adulti.count * PRET_ADULT;
 
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       {/* ── Cele doua box-uri de categorie ── */}
-      <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+      <div className="flex flex-wrap gap-4">
         <GrupBox titlu="Copii" pretUnitar={PRET_COPIL} count={copii.count} onIncrement={copii.increment} onDecrement={copii.decrement} onReset={copii.reset} />
         <GrupBox titlu="Adulți" pretUnitar={PRET_ADULT} count={adulti.count} onIncrement={adulti.increment} onDecrement={adulti.decrement} onReset={adulti.reset} />
       </div>
 
       {/* ── Totalul grupului — derivat, nu stare separata ── */}
-      <div
-        style={{
-          marginTop: "1rem",
-          padding: "1rem",
-          background: "#f5f5f5",
-          borderRadius: "8px",
-          maxWidth: "380px"
-        }}
-      >
-        <p style={{ margin: "0.25rem 0" }}>
+      <div className="border-border bg-muted flex max-w-sm flex-col gap-2 rounded-lg border p-4">
+        <p>
           Total grup: <strong>{totalPersone} persoane</strong>
         </p>
-        <p style={{ margin: "0.25rem 0" }}>
+        <p>
           Total de plată: <strong>{totalPret} lei</strong>
         </p>
       </div>
 
       {/* ── Dimensiunea ferestrei (al doilea hook custom) ── */}
-      <p style={{ marginTop: "1rem", color: "#888", fontSize: "0.875rem" }}>
+      <p className="text-muted-foreground text-sm">
         Fereastra: {fereastra.width} × {fereastra.height} px (redimensioneaz-o ca să vezi live)
       </p>
     </div>
