@@ -35,8 +35,8 @@ const demos: Demo[] = [
   { id: "shadcn-setup", step: 10, title: "shadcn/ui (componente gata)", element: <ShadcnSetup /> },
   { id: "custom-hooks", step: 11, title: "custom hooks (useCounter, useWindowSize)", element: <CustomHooks /> },
   { id: "context", step: 12, title: "Context API (stare partajata)", element: <ContextDemo /> },
-  { id: "shareable-link", step: 13, title: "URL ca sursă de adevăr (React Router — preview)", element: <ShareableLink /> },
-  { id: "sidebar-navigation", step: 14, title: "meniu lateral de navigare (sidebar)", element: <SidebarNavigation /> }
+  { id: "shareable-link", step: 13, title: "URL ca sursă de adevăr (React Router)", element: <ShareableLink /> },
+  { id: "sidebar-navigation", step: 14, title: "meniu de navigare (sidebar)", element: <SidebarNavigation /> }
 ];
 
 function AppContent() {

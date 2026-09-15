@@ -1,4 +1,4 @@
-// Pas 14 — meniu lateral de navigare (sidebar).
+// Pas 14 — meniu de navigare (sidebar).
 // De ce: nav-ul de sus (flex-wrap) devine incomod cand sunt multi pasi — un
 // meniu vertical ramane usor de scanat indiferent de numarul lor. Tiparul nu
 // se schimba: acelasi buton (DemoTab), aceeasi sursa unica de adevar
