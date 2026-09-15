@@ -24,15 +24,15 @@ const routerSnippet = `import { NavLink } from "react-router-dom";
 
 const futureSessionPrompt = `NU RULA ACEST PROMPT ACUM — e pentru o sesiune viitoare.
 
-Leagă meniul lateral (SidebarMenu, demo SidebarNavigation) de URL cu
-react-router-dom, la fel ca în nota din pasul 13 (ShareableLink). Cerințe:
+Leagă meniul lateral (SidebarMenu) de URL cu react-router-dom, la fel ca în
+nota din pasul 13 (ShareableLink). SidebarMenu e acum singurul meniu de
+navigare al aplicației — randat permanent, în stânga, din App.tsx (nu mai
+există un nav separat sus). Cerințe:
 - adaugă react-router-dom ca dependință nouă (discutată explicit)
 - învelește App cu <BrowserRouter>
 - fiecare buton din SidebarMenu devine <NavLink to={\`/pas/\${d.id}\`}>, în loc
   de onClick={() => setActiveId(d.id)}
 - starea activă vine din prop-ul isActive al NavLink, nu din activeId === d.id
-- nav-ul de sus (DemoTab din App.tsx) trece prin aceeași schimbare, ca să
-  rămână consistent cu sidebar-ul
 - ActiveStepProvider trece de la useState la citirea lui stepId din
   useParams, ca în pasul 13
 - o cale necunoscută sau "/" redirecționează la primul pas din registru
