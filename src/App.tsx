@@ -48,7 +48,8 @@ function AppContent() {
       {/* paddingTop lasă spațiu pentru badge-urile care depășesc chenarul butonului */}
       <nav className="mb-6 flex flex-wrap items-center gap-3 pt-2">
         {steps.map(d => (
-          <DemoTab key={d.id} step={d.step} title={d.title} active={d.id === activeId} onClick={() => setActiveId(d.id)} />
+          // pasii 13-14 sar pe rand (animate-bounce) — delay-ul decaleaza saltul, nu sar deodata
+          <DemoTab key={d.id} step={d.step} title={d.title} active={d.id === activeId} onClick={() => setActiveId(d.id)} className={d.step === 13 ? "animate-bounce" : d.step === 14 ? "animate-bounce [animation-delay:0.5s]" : undefined} />
         ))}
         <ThemeToggle />
       </nav>

@@ -58,7 +58,7 @@ notiței din pasul 13 (demo ShareableLink). Cerințe:
 - ActiveStepProvider trece de la useState la citirea lui stepId din useParams
 - restul aplicației (registrul demos, DemoTab, ThemeToggle) rămâne neschimbat
 - acesta e pasul 19 din docs/requirements.md, nu o modificare a pasului 13
-- un singur commit, mesaj: "pas 19 — React Router (URL ca sursă de adevăr)"`;
+- scoate animatia de la pasul implementat`;
 
 // text-left: #root are text-align: center global, care altfel centrează
 // fiecare linie din <pre> și distruge indentarea codului.

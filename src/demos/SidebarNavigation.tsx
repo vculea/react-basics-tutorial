@@ -37,7 +37,7 @@ există un nav separat sus). Cerințe:
 - o cale necunoscută sau "/" redirecționează la primul pas din registru
 - restul aplicației (registrul demos, componentele existente) rămâne neschimbat
 - acesta e pasul 19 din docs/requirements.md, nu o modificare a pasului 14
-- un singur commit, mesaj: "pas 19 — React Router (URL ca sursă de adevăr)"`;
+- scoate animatia de la pasul implementat`;
 
 const codeBlockClass = "border-border bg-muted text-foreground overflow-x-auto rounded-lg border p-4 text-left font-mono text-sm leading-6";
 
