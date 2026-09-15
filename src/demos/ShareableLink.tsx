@@ -47,8 +47,7 @@ function App() {
   );
 }`;
 
-const futureSessionPrompt = `NU RULA ACEST PROMPT ACUM — e pentru o sesiune viitoare.
-
+const futureSessionPrompt = `
 Implementează sincronizarea pas activ <-> URL cu react-router-dom, conform
 notiței din pasul 13 (demo ShareableLink). Cerințe:
 - adaugă react-router-dom ca dependință nouă (discutată explicit)

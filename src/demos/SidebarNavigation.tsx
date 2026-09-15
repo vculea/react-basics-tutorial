@@ -22,8 +22,7 @@ const routerSnippet = `import { NavLink } from "react-router-dom";
   ))}
 </nav>`;
 
-const futureSessionPrompt = `NU RULA ACEST PROMPT ACUM — e pentru o sesiune viitoare.
-
+const futureSessionPrompt = `
 Leagă meniul lateral (SidebarMenu) de URL cu react-router-dom, la fel ca în
 nota din pasul 13 (ShareableLink). SidebarMenu e acum singurul meniu de
 navigare al aplicației — randat permanent, în stânga, din App.tsx (nu mai
