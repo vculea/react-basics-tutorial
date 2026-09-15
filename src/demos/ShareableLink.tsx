@@ -7,9 +7,7 @@
 // (vezi docs/requirements.md, §6). Codul de mai jos NU rulează în aplicație,
 // e doar exemplul de reținut pentru ziua în care ajungem acolo.
 
-import { useState } from "react";
-import { Check, Copy } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { CopyButton } from "@/components/CopyButton";
 
 // Fișierul care rămâne aproape neschimbat: doar învelește tot cu router-ul.
 const mainSnippet = `import { BrowserRouter } from "react-router-dom";
@@ -66,25 +64,6 @@ notiței din pasul 13 (demo ShareableLink). Cerințe:
 // text-left: #root are text-align: center global, care altfel centrează
 // fiecare linie din <pre> și distruge indentarea codului.
 const codeBlockClass = "border-border bg-muted text-foreground overflow-x-auto rounded-lg border p-4 text-left font-mono text-sm leading-6";
-
-// Buton mic, reutilizabil doar în acest fișier: copiază textul primit și arată
-// preț de 2 secunde o confirmare, apoi revine la iconița inițială.
-function CopyButton({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false);
-
-  async function handleCopy() {
-    await navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  }
-
-  return (
-    <Button variant="secondary" size="sm" onClick={handleCopy} className="absolute top-3 right-3 gap-1.5">
-      {copied ? <Check className="size-3.5" /> : <Copy className="size-3.5" />}
-      {copied ? "Copiat!" : "Copiază"}
-    </Button>
-  );
-}
 
 export function ShareableLink() {
   return (

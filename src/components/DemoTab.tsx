@@ -15,11 +15,12 @@ type Props = {
   title: string;
   active: boolean;
   onClick: () => void;
+  className?: string;
 };
 
-export function DemoTab({ step, title, active, onClick }: Props) {
+export function DemoTab({ step, title, active, onClick, className }: Props) {
   return (
-    <Button variant={active ? "default" : "secondary"} size="sm" onClick={onClick} className="relative overflow-visible">
+    <Button variant={active ? "default" : "secondary"} size="sm" onClick={onClick} className={cn("relative overflow-visible", className)}>
       {title}
       {/* cn() compune clasele fără conflicte: varianta activă inversează
           culorile badge-ului față de varianta inactivă. */}

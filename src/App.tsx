@@ -12,6 +12,7 @@ import { ShadcnSetup } from "@/demos/ShadcnSetup";
 import { CustomHooks } from "@/demos/CustomHooks";
 import { ContextDemo } from "@/demos/ContextDemo";
 import { ShareableLink } from "@/demos/ShareableLink";
+import { SidebarNavigation } from "@/demos/SidebarNavigation";
 import { DemoTab } from "@/components/DemoTab";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { ActiveStepProvider, useActiveStep } from "@/context/ActiveStepProvider";
@@ -34,7 +35,8 @@ const demos: Demo[] = [
   { id: "shadcn-setup", step: 10, title: "shadcn/ui (componente gata)", element: <ShadcnSetup /> },
   { id: "custom-hooks", step: 11, title: "custom hooks (useCounter, useWindowSize)", element: <CustomHooks /> },
   { id: "context", step: 12, title: "Context API (stare partajata)", element: <ContextDemo /> },
-  { id: "shareable-link", step: 13, title: "URL ca sursă de adevăr (React Router — preview)", element: <ShareableLink /> }
+  { id: "shareable-link", step: 13, title: "URL ca sursă de adevăr (React Router — preview)", element: <ShareableLink /> },
+  { id: "sidebar-navigation", step: 14, title: "meniu lateral de navigare (sidebar)", element: <SidebarNavigation /> }
 ];
 
 function AppContent() {
