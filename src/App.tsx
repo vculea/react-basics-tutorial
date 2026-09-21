@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { Counter } from "@/demos/Counter";
 import { CounterClass } from "@/demos/CounterClass";
 import { PureFunctions } from "@/demos/PureFunctions";
@@ -40,7 +41,8 @@ const demos: Demo[] = [
 ];
 
 function AppContent() {
-  const { activeId, setActiveId, steps } = useActiveStep();
+  const navigate = useNavigate();
+  const { activeId, steps } = useActiveStep();
   const active = steps.find(demo => demo.id === activeId) ?? steps[0];
 
   return (
@@ -48,8 +50,7 @@ function AppContent() {
       {/* paddingTop lasă spațiu pentru badge-urile care depășesc chenarul butonului */}
       <nav className="mb-6 flex flex-wrap items-center gap-3 pt-2">
         {steps.map(d => (
-          // pasii 13-14 sar pe rand (animate-bounce) — delay-ul decaleaza saltul, nu sar deodata
-          <DemoTab key={d.id} step={d.step} title={d.title} active={d.id === activeId} onClick={() => setActiveId(d.id)} className={d.step === 13 ? "animate-bounce" : d.step === 14 ? "animate-bounce [animation-delay:0.5s]" : undefined} />
+          <DemoTab key={d.id} step={d.step} title={d.title} active={d.id === activeId} onClick={() => navigate(`/pas/${d.id}`)} />
         ))}
         <ThemeToggle />
       </nav>
@@ -63,9 +64,17 @@ function AppContent() {
 
 function App() {
   return (
-    <ActiveStepProvider steps={demos}>
-      <AppContent />
-    </ActiveStepProvider>
+    <Routes>
+      <Route
+        path="/pas/:stepId"
+        element={
+          <ActiveStepProvider steps={demos}>
+            <AppContent />
+          </ActiveStepProvider>
+        }
+      />
+      <Route path="*" element={<Navigate to={`/pas/${demos[0].id}`} replace />} />
+    </Routes>
   );
 }
 

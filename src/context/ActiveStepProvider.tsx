@@ -2,9 +2,15 @@
 // De ce: activeId este folosit de meniul din header si de continutul paginii.
 // Context il pune intr-o singura sursa, citita direct de orice descendent,
 // fara props trecute prin componente care nu au nevoie de ele.
+//
+// Pas 19 — URL ca sursa de adevar. activeId nu mai vine din useState ci din
+// useParams (react-router-dom). Schimbarea se face printr-un navigate(), nu prin
+// setState — asa URL-ul oglaseaza mereu pasul activ si un link trimis pe alt
+// calculator deschide direct pasul potrivit, fara dependența de localStorage.
 
-import { createContext, useContext, useEffect, useState } from "react";
-import type { Dispatch, ReactNode, SetStateAction } from "react";
+import { createContext, useCallback, useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import type { ReactNode } from "react";
 
 export type Step = {
   id: string;
@@ -15,7 +21,7 @@ export type Step = {
 
 type ActiveStepContextValue = {
   activeId: string;
-  setActiveId: Dispatch<SetStateAction<string>>;
+  setActiveId: (id: string) => void;
   steps: Step[];
 };
 
@@ -24,20 +30,22 @@ type Props = {
   children: ReactNode;
 };
 
-const ACTIVE_STEP_STORAGE_KEY = "active-step-id";
-
 // undefined este intentionat: hook-ul poate detecta un consumator fara provider.
 const ActiveStepContext = createContext<ActiveStepContextValue | undefined>(undefined);
 
 export function ActiveStepProvider({ steps, children }: Props) {
-  const [activeId, setActiveId] = useState(() => {
-    const savedId = localStorage.getItem(ACTIVE_STEP_STORAGE_KEY);
-    return savedId !== null && steps.some(step => step.id === savedId) ? savedId : steps[0].id;
-  });
+  const { stepId } = useParams();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    localStorage.setItem(ACTIVE_STEP_STORAGE_KEY, activeId);
-  }, [activeId]);
+  // stepId poate fi undefined (pe ruta "*") sau neconoscut — in ambe cazuri
+  // revenim la primul pas. Folosim find(...)?.id ?? fallback pentru a evita
+  // non-null assertion (Interzisă prin convenție de cod).
+  const activeId = steps.find(step => step.id === stepId)?.id ?? steps[0].id;
+
+  // setActiveId navighează prin URL în loc să modifice un useState — astfel
+  // orice consumator al contextului (nav-ul, sidebar-ul, dropdown-ul din
+  // ContextDemo) schimbă pasul prin router, nu prin stare locală.
+  const setActiveId = useCallback((id: string) => navigate(`/pas/${id}`), [navigate]);
 
   return <ActiveStepContext.Provider value={{ activeId, setActiveId, steps }}>{children}</ActiveStepContext.Provider>;
 }
